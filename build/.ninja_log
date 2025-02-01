@@ -1,0 +1,7 @@
+# ninja log v5
+152	5744	1738435748111601191	CMakeFiles/ESC_Server_V0_1.dir/src/module.cpp.o	ced149953fb36dce
+18	4731	1738436921949248812	CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o	cb306f8e2a616ff2
+4732	5387	1738436922599246948	ESC_Server_V0_1	5944ac0aeef8215e
+3	16	0	clean	a31eedcededa8236
+32	4284	1738438334873906700	CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o	cb306f8e2a616ff2
+4287	4973	1738438335553897060	ESC_Server_V0_1	5944ac0aeef8215e

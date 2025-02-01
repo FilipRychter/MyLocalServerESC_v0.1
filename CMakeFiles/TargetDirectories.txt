@@ -1,0 +1,3 @@
+/home/Filip/Projects/C++/ESC_Server_V0_1/CMakeFiles/ESC_Server_V0_1.dir
+/home/Filip/Projects/C++/ESC_Server_V0_1/CMakeFiles/edit_cache.dir
+/home/Filip/Projects/C++/ESC_Server_V0_1/CMakeFiles/rebuild_cache.dir
