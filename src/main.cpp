@@ -1,13 +1,30 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+
+#include "main.hpp"
+
 #include <gpiod.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
 
+// Mongoose to jako server ?
+
+
+// sudo systemctl restart bluetooth
+// bluetoothctl connect 85:55:A1:81:10:04
+
+
+void print_theread_id(int id){
+    std::cout << "print form thread "<< id << "\n";
+}
+
 int main() {
+
+    std::thread t1(print_theread_id,0);
+    t1.join();
     // GPIO: Ustawienie numeru GPIO (np. 17)
     const char* gpio_chipname = "/dev/gpiochip0";
     int gpio_line_num = 3;
