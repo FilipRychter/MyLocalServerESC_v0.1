@@ -1,6 +1,8 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <mutex>
+#include <vector>
 
 #include "main.hpp"
 
@@ -10,21 +12,52 @@
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
 
+#include <SDL2/SDL.h>
+
+
 // Mongoose to jako server ?
 
 
 // sudo systemctl restart bluetooth
 // bluetoothctl connect 85:55:A1:81:10:04
 
+void readGamepad(){
 
-void print_theread_id(int id){
-    std::cout << "print form thread "<< id << "\n";
+
+
 }
+
+
+void sendSPIData(){
+    
+}
+
+
+
 
 int main() {
 
-    std::thread t1(print_theread_id,0);
+    // std::vector<std::jthread>  my_threads;
+    // for(int i = 0 ; i < 3 ; i++){
+    //     my_threads.emplace_back(print_theread_id,i);
+    // }
+
+    // std::jthread t1(print_theread_id,0);
+
+    std::thread t1(readGamepad);
+    std::thread t2(sendSPIData);
+
     t1.join();
+    t2.join();
+
+
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0) {
+        std::cerr << "SDL could not initialize! SDL Error: " << SDL_GetError() << std::endl;
+        return 1;
+    }
+
+
+
     // GPIO: Ustawienie numeru GPIO (np. 17)
     const char* gpio_chipname = "/dev/gpiochip0";
     int gpio_line_num = 3;
@@ -62,6 +95,10 @@ int main() {
     // Zwolnienie zasobów GPIO
     gpiod_chip_close(gpio_chip);
 
+
+
+
+
     // SPI: Ustawienie SPI (np. /dev/spidev0.0)
     int spi_fd = open("/dev/spidev0.0", O_RDWR);
     if (spi_fd < 0) {
@@ -94,10 +131,10 @@ int main() {
     }
 
     // Przykład wysyłania danych przez SPI
-    uint8_t tx_data[] = {0x01, 0x02, 0x03, 0x04};  // Przykładowe dane do wysłania
-    uint8_t rx_data[4] = {0};
+    uint8_t tx_data[] = {0x05, 0x02, 0x03, 0x04,0x66,0x45,0x05, 0x02, 0x03, 0x04,0x66,0x45};  // Przykładowe dane do wysłania
+    uint8_t rx_data[sizeof(tx_data)] = {0};
 
-    struct spi_ioc_transfer transfer = {};
+    struct spi_ioc_transfer transfer = {}; 
     transfer.tx_buf = reinterpret_cast<unsigned long>(tx_data);
     transfer.rx_buf = reinterpret_cast<unsigned long>(rx_data);
     transfer.len = sizeof(tx_data);
@@ -115,6 +152,7 @@ int main() {
     for (int i = 0; i < sizeof(rx_data); ++i) {
         std::cout << "0x" << std::hex << (int)rx_data[i] << " ";
     }
+
     std::cout << std::dec << std::endl;
 
     // Zamknięcie pliku SPI
