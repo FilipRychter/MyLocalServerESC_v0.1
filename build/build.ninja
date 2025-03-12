@@ -51,7 +51,8 @@ build cmake_object_order_depends_target_ESC_Server_V0_1: phony || CMakeFiles/ESC
 
 build CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o: CXX_COMPILER__ESC_Server_V0_1_Debug /home/Filip/Projects/C++/ESC_Server_V0_1/src/main.cpp || cmake_object_order_depends_target_ESC_Server_V0_1
   DEP_FILE = CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o.d
-  FLAGS = -g -std=gnu++17
+  FLAGS = -g -std=gnu++20
+  INCLUDES = -I/home/Filip/Projects/C++/ESC_Server_V0_1/inc -I/usr/include/SDL2
   OBJECT_DIR = CMakeFiles/ESC_Server_V0_1.dir
   OBJECT_FILE_DIR = CMakeFiles/ESC_Server_V0_1.dir/src
 
@@ -65,7 +66,7 @@ build CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o: CXX_COMPILER__ESC_Server_V0
 
 build ESC_Server_V0_1: CXX_EXECUTABLE_LINKER__ESC_Server_V0_1_Debug CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o | /usr/lib/arm-linux-gnueabihf/libgpiod.so
   FLAGS = -g
-  LINK_LIBRARIES = /usr/lib/arm-linux-gnueabihf/libgpiod.so  -lpthread  -lrt
+  LINK_LIBRARIES = /usr/lib/arm-linux-gnueabihf/libgpiod.so  -lSDL2  -lpthread  -lrt
   OBJECT_DIR = CMakeFiles/ESC_Server_V0_1.dir
   POST_BUILD = :
   PRE_LINK = :

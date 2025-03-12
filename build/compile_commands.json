@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/Filip/Projects/C++/ESC_Server_V0_1/build",
-  "command": "/usr/bin/arm-linux-gnueabihf-g++ -g -std=gnu++17 -o CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o -c /home/Filip/Projects/C++/ESC_Server_V0_1/src/main.cpp",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++ -I/home/Filip/Projects/C++/ESC_Server_V0_1/inc -I/usr/include/SDL2 -g -std=gnu++20 -o CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o -c /home/Filip/Projects/C++/ESC_Server_V0_1/src/main.cpp",
   "file": "/home/Filip/Projects/C++/ESC_Server_V0_1/src/main.cpp"
 }
 ]
