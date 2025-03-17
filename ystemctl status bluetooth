@@ -1,0 +1,21 @@
+[0;1;32m●[0m bluetooth.service - Bluetooth service
+     Loaded: loaded (]8;;file://MyServer/lib/systemd/system/bluetooth.service/lib/systemd/system/bluetooth.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Wed 2025-03-12 11:25:46 CET; 3min 38s ago
+       Docs: ]8;;man:bluetoothd(8)man:bluetoothd(8)]8;;
+   Main PID: 1635 (bluetoothd)
+     Status: "Running"
+      Tasks: 1[0;38;5;245m (limit: 380)[0m
+        CPU: 409ms
+     CGroup: /system.slice/bluetooth.service
+             └─[0;38;5;245m1635 /usr/libexec/bluetooth/bluetoothd[0m
+
+Mar 12 11:25:46 MyServer bluetoothd[1635]: [0;1;31m[0;1;39m[0;1;31msrc/plugin.c:plugin_init() Failed to init vcp plugin[0m
+Mar 12 11:25:46 MyServer bluetoothd[1635]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mprofiles/audio/mcp.c:mcp_init() D-Bus experimental not enabled[0m
+Mar 12 11:25:46 MyServer bluetoothd[1635]: [0;1;31m[0;1;39m[0;1;31msrc/plugin.c:plugin_init() Failed to init mcp plugin[0m
+Mar 12 11:25:46 MyServer bluetoothd[1635]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mprofiles/audio/bap.c:bap_init() D-Bus experimental not enabled[0m
+Mar 12 11:25:46 MyServer bluetoothd[1635]: [0;1;31m[0;1;39m[0;1;31msrc/plugin.c:plugin_init() Failed to init bap plugin[0m
+Mar 12 11:25:46 MyServer bluetoothd[1635]: Bluetooth management interface 1.22 initialized
+Mar 12 11:25:46 MyServer bluetoothd[1635]: [0;1;31m[0;1;39m[0;1;31mprofiles/sap/server.c:sap_server_register() Sap driver initialization failed.[0m
+Mar 12 11:25:46 MyServer bluetoothd[1635]: [0;1;31m[0;1;39m[0;1;31msap-server: Operation not permitted (1)[0m
+Mar 12 11:27:28 MyServer bluetoothd[1635]: [0;1;31m[0;1;39m[0;1;31mprofiles/input/device.c:ioctl_is_connected() Can't get HIDP connection info[0m
+Mar 12 11:27:31 MyServer bluetoothd[1635]: [0;1;31m[0;1;39m[0;1;31mprofiles/input/device.c:hidp_add_connection() Rejected connection from !bonded device 85:55:A1:81:10:04[0m

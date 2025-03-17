@@ -56,6 +56,13 @@ build CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o: CXX_COMPILER__ESC_Server_V0
   OBJECT_DIR = CMakeFiles/ESC_Server_V0_1.dir
   OBJECT_FILE_DIR = CMakeFiles/ESC_Server_V0_1.dir/src
 
+build CMakeFiles/ESC_Server_V0_1.dir/src/shared_data.cpp.o: CXX_COMPILER__ESC_Server_V0_1_Debug /home/Filip/Projects/C++/ESC_Server_V0_1/src/shared_data.cpp || cmake_object_order_depends_target_ESC_Server_V0_1
+  DEP_FILE = CMakeFiles/ESC_Server_V0_1.dir/src/shared_data.cpp.o.d
+  FLAGS = -g -std=gnu++20
+  INCLUDES = -I/home/Filip/Projects/C++/ESC_Server_V0_1/inc -I/usr/include/SDL2
+  OBJECT_DIR = CMakeFiles/ESC_Server_V0_1.dir
+  OBJECT_FILE_DIR = CMakeFiles/ESC_Server_V0_1.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ESC_Server_V0_1
@@ -64,7 +71,7 @@ build CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o: CXX_COMPILER__ESC_Server_V0
 #############################################
 # Link the executable ESC_Server_V0_1
 
-build ESC_Server_V0_1: CXX_EXECUTABLE_LINKER__ESC_Server_V0_1_Debug CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o | /usr/lib/arm-linux-gnueabihf/libgpiod.so
+build ESC_Server_V0_1: CXX_EXECUTABLE_LINKER__ESC_Server_V0_1_Debug CMakeFiles/ESC_Server_V0_1.dir/src/main.cpp.o CMakeFiles/ESC_Server_V0_1.dir/src/shared_data.cpp.o | /usr/lib/arm-linux-gnueabihf/libgpiod.so
   FLAGS = -g
   LINK_LIBRARIES = /usr/lib/arm-linux-gnueabihf/libgpiod.so  -lSDL2  -lpthread  -lrt
   OBJECT_DIR = CMakeFiles/ESC_Server_V0_1.dir

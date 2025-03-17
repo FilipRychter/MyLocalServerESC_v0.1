@@ -12,6 +12,7 @@ pkg_check_modules(SDL2 REQUIRED sdl2)
 # Tworzymy plik wykonywalny
 add_executable(ESC_Server_V0_1
     src/main.cpp
+    src/shared_data.cpp
 )
 
 # Dodajemy katalogi nagłówkowe
