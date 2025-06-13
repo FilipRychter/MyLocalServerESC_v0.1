@@ -98,6 +98,8 @@ void processEvents()
         case SDL_CONTROLLERDEVICEREMOVED:
             if (controller && event.cdevice.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(controller)))
             {
+                running = false;
+                pwm_running = false;
                 SDL_GameControllerClose(controller);
                 controller = findController();
             }
@@ -114,9 +116,9 @@ void processEvents()
                 break;
             }
 
-            std::lock_guard<std::mutex> lock(queueMutex);
-            spiQueue.push(event.cbutton.button);
-            queueCond.notify_one();
+            // std::lock_guard<std::mutex> lock(queueMutex);
+            // spiQueue.push(event.cbutton.button);
+            // queueCond.notify_one();
             break;
         }
         case SDL_CONTROLLERAXISMOTION:
@@ -154,21 +156,18 @@ void readTriggers()
     int16_t l2_value = SDL_JoystickGetAxis(joystick, 4); // Evtest może pokazać inny numer osi
     int16_t r2_value = SDL_JoystickGetAxis(joystick, 5);
 
-    if (std::abs(l2_value - l2_value_old) > 500)// wez tu wstaw podstawową wartosc aby odrazu nieprubowal wysłac 2 na raz 
+    if (l2_value != l2_value_old)// wez tu wstaw podstawową wartosc aby odrazu nieprubowal wysłac 2 na raz 
     {
         l2_value_old = l2_value;
         duty_cycle_3 = (l2_value + 32768) * 100 / 65535;
-        std::cout << "L2" << duty_cycle_3;
-
-
+        std::cout << "L2" << duty_cycle_3 << std::endl;
     }
 
-    if (std::abs(r2_value - r2_value_old) > 500)
+    if (r2_value != r2_value_old)
     {
         r2_value_old = r2_value;
         duty_cycle_2 = (r2_value + 32768) * 100 / 65535;
-        std::cout << "R2" << duty_cycle_2;
-
+        std::cout << "R2" << duty_cycle_2 << std::endl;
     }
 }
 
@@ -300,12 +299,13 @@ void pwmLoop_2(gpiod_line* line, int frequency_hz = 1000)
     {
         int high_time = period_us * duty_cycle_2 / 100;
         int low_time = period_us - high_time;
-
-        gpiod_line_set_value(line, 1);
+        
+        if(duty_cycle_2 != 0) gpiod_line_set_value(line, 1);
         std::this_thread::sleep_for(microseconds(high_time));
 
-        gpiod_line_set_value(line, 0);
+        if(duty_cycle_2 < 100) gpiod_line_set_value(line, 0);
         std::this_thread::sleep_for(microseconds(low_time));
+        
     }
 
     gpiod_line_set_value(line, 0); // Wyłącz na koniec
@@ -321,12 +321,12 @@ void pwmLoop_3(gpiod_line* line, int frequency_hz = 1000)
     {
         int high_time = period_us * duty_cycle_3 / 100;
         int low_time = period_us - high_time;
-
-        gpiod_line_set_value(line, 1);
+        if(duty_cycle_3 != 0) gpiod_line_set_value(line, 1);
         std::this_thread::sleep_for(microseconds(high_time));
-
-        gpiod_line_set_value(line, 0);
+    
+        if(duty_cycle_3 < 100) gpiod_line_set_value(line, 0);
         std::this_thread::sleep_for(microseconds(low_time));
+        
     }
 
     gpiod_line_set_value(line, 0); // Wyłącz na koniec
